@@ -5,8 +5,8 @@ from collections import defaultdict
 from watchdog.events import FileSystemEventHandler
 from watchdog.observers import Observer
 
-watch_dir = r'C:\tmp\playblast'
-player = r'C:\Program Files\Keyframe MP 2\bin\KeyframeMP.exe'
+watch_dir = 'C:/tmp/playblast'
+media_player = 'C:/Program Files/Keyframe MP 2/bin/KeyframeMP.exe'
 filetype = ('.mp4','.avi','.mov')
 
 class ChangeHandler(FileSystemEventHandler):
@@ -30,7 +30,7 @@ class ChangeHandler(FileSystemEventHandler):
             stats = os.stat(filepath).st_mtime
 
             if stats - self.files[event.src_path] > 1:
-                subprocess.Popen(player + ' "%s"' % filepath)
+                subprocess.Popen(media_player + ' "%s"' % filepath)
                 self.files[event.src_path] = stats
 
 if __name__ == "__main__":
